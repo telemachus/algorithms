@@ -22,3 +22,15 @@ func TestNewBST(t *testing.T) {
 		t.Errorf("expected %s; actual %s", expected, actual)
 	}
 }
+
+func TestTreeInsert(t *testing.T) {
+	tree := algorithms.NewBST()
+	
+	tree.Insert(2)
+	tree.Insert(10)
+	tree.Insert(-15)
+
+	if 3 != tree.Size() {
+		t.Errorf("inserted three items; actual tree.Size() is %d", tree.Size())
+	}
+}
