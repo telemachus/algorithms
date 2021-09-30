@@ -103,8 +103,8 @@ func maxHeapify(data []int, i int) {
 		largestIndex = rightIndex
 	}
 
-	if largestIndex != index {
+	if largestIndex != i {
 		data[i], data[largestIndex] = data[largestIndex], data[i]
-		maxHeapify(data, largest)
+		maxHeapify(data, largestIndex)
 	}
 }
