@@ -89,7 +89,7 @@ func (h *Heap) validIndex(n int) bool {
 	return n >= 0 && n < len(h.data)
 }
 
-func maxHeapify(data []int, i int) {
+func maxHeapifyR(data []int, i int) {
 	leftIndex := leftChildIndex(i)
 	rightIndex := rightChildIndex(i)
 	var largestIndex int
@@ -105,6 +105,6 @@ func maxHeapify(data []int, i int) {
 
 	if largestIndex != i {
 		data[i], data[largestIndex] = data[largestIndex], data[i]
-		maxHeapify(data, largestIndex)
+		maxHeapifyR(data, largestIndex)
 	}
 }
