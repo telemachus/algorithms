@@ -27,7 +27,7 @@ func show(i int) {
 	fmt.Println(i)
 }
 
-func ExampleInOrderWalk() {
+func ExampleTree_InOrderWalk() {
 	t := makeTree()
 	t.InOrderWalk(show)
 	// Output:
@@ -45,7 +45,7 @@ func ExampleInOrderWalk() {
 	// 20
 }
 
-func ExampleInOrderIterativeWalk() {
+func ExampleTree_InOrderIterativeWalk() {
 	t := makeTree()
 	t.InOrderIterativeWalk(show)
 	// Output:
@@ -63,7 +63,7 @@ func ExampleInOrderIterativeWalk() {
 	// 20
 }
 
-func ExamplePreOrderWalk() {
+func ExampleTree_PreOrderWalk() {
 	t := makeTree()
 	t.PreOrderWalk(show)
 	// Output:
@@ -81,7 +81,7 @@ func ExamplePreOrderWalk() {
 	// 20
 }
 
-func ExamplePreOrderIterativeWalk() {
+func ExampleTree_PreOrderIterativeWalk() {
 	t := makeTree()
 	t.PreOrderIterativeWalk(show)
 	// Output:
@@ -99,7 +99,7 @@ func ExamplePreOrderIterativeWalk() {
 	// 20
 }
 
-func ExamplePostOrderWalk() {
+func ExampleTree_PostOrderWalk() {
 	t := makeTree()
 	t.PostOrderWalk(show)
 	// Output:
@@ -117,7 +117,7 @@ func ExamplePostOrderWalk() {
 	// 15
 }
 
-func ExamplePostOrderIterativeWalk() {
+func ExampleTree_PostOrderIterativeWalk() {
 	t := makeTree()
 	t.PostOrderIterativeWalk(show)
 	// Output:
@@ -135,7 +135,7 @@ func ExamplePostOrderIterativeWalk() {
 	// 15
 }
 
-func ExampleDeleteNoChildren() {
+func ExampleTree_Delete_noChildren() {
 	t := makeTree()
 	t.Delete(2)
 	fmt.Println(t.Size())
@@ -155,7 +155,7 @@ func ExampleDeleteNoChildren() {
 	// 20
 }
 
-func ExampleDeleteRoot() {
+func ExampleTree_Delete_root() {
 	t := makeTree()
 	t.Delete(15)
 	fmt.Println(t.Size())
@@ -175,7 +175,7 @@ func ExampleDeleteRoot() {
 	// 20
 }
 
-func ExampleDeleteTwoChildren() {
+func ExampleTree_Delete_twoChildren() {
 	t := makeTree()
 	t.Delete(18)
 	fmt.Println(t.Size())
@@ -195,7 +195,7 @@ func ExampleDeleteTwoChildren() {
 	// 20
 }
 
-func ExampleDeleteLeftChildOnly() {
+func ExampleTree_Delete_leftChildOnly() {
 	t := makeTree()
 	t.Delete(13)
 	fmt.Println(t.Size())
@@ -215,7 +215,7 @@ func ExampleDeleteLeftChildOnly() {
 	// 20
 }
 
-func ExampleDeleteRightChildOnly() {
+func ExampleTree_Delete_rightChildOnly() {
 	t := makeTree()
 	t.Insert(5)
 	t.Delete(4)
@@ -237,7 +237,7 @@ func ExampleDeleteRightChildOnly() {
 	// 20
 }
 
-func ExampleDeleteMultipleItemsOfAllkinds() {
+func ExampleTree_Delete_multipleItemsOfAllkinds() {
 	t := makeTree()
 	t.Insert(5)
 	t.Delete(4)

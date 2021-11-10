@@ -20,7 +20,6 @@ func BenchmarkInOrderIterativeWalk(b *testing.B) {
 	t.Insert(17)
 	t.Insert(20)
 	show := func(i int) {
-		return
 	}
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -42,7 +41,6 @@ func BenchmarkInOrderRecursiveWalk(b *testing.B) {
 	t.Insert(17)
 	t.Insert(20)
 	show := func(i int) {
-		return
 	}
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {

@@ -9,8 +9,7 @@ import (
 )
 
 func shuffledSlice() sort.IntSlice {
-	var xs sort.IntSlice
-	xs = make([]int, 10000)
+	var xs sort.IntSlice = make([]int, 10000)
 	rand.Shuffle(len(xs), func(i, j int) {
 		xs[i], xs[j] = xs[j], xs[i]
 	})
@@ -19,8 +18,7 @@ func shuffledSlice() sort.IntSlice {
 }
 
 func equalSlice() sort.IntSlice {
-	var xs sort.IntSlice
-	xs = make([]int, 10000)
+	var xs sort.IntSlice = make([]int, 10000)
 	for i := 0; i < 10000; i++ {
 		xs[i] = 1
 	}
@@ -29,8 +27,7 @@ func equalSlice() sort.IntSlice {
 }
 
 func inOrderSlice() sort.IntSlice {
-	var xs sort.IntSlice
-	xs = make([]int, 10000)
+	var xs sort.IntSlice = make([]int, 10000)
 	for i := 0; i < 10000; i++ {
 		xs[i] = i
 	}
@@ -39,8 +36,7 @@ func inOrderSlice() sort.IntSlice {
 }
 
 func reversedSlice() sort.IntSlice {
-	var xs sort.IntSlice
-	xs = make([]int, 10000)
+	var xs sort.IntSlice = make([]int, 10000)
 	for i, j := 0, 10000; i < 10000; i, j = i+1, j-1 {
 		xs[i] = j
 	}
