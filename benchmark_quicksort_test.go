@@ -4,12 +4,14 @@ import (
 	"math/rand"
 	"sort"
 	"testing"
+	"time"
 
 	"git.sr.ht/~telemachus/algorithms"
 )
 
 func shuffledSlice() sort.IntSlice {
 	var xs sort.IntSlice = make([]int, 10000)
+	rand.Seed(time.Now().UnixNano())
 	rand.Shuffle(len(xs), func(i, j int) {
 		xs[i], xs[j] = xs[j], xs[i]
 	})
@@ -19,6 +21,9 @@ func shuffledSlice() sort.IntSlice {
 
 func equalSlice() sort.IntSlice {
 	var xs sort.IntSlice = make([]int, 10000)
+	for i, j := 0, 10000; i < 10000; i, j = i+1, j-1 {
+		xs[i] = j
+	}
 	for i := 0; i < 10000; i++ {
 		xs[i] = 1
 	}
