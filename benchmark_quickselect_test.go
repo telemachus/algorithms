@@ -6,6 +6,7 @@ import (
 	"git.sr.ht/~telemachus/algorithms"
 )
 
+// This is a nonsense comment.
 func BenchmarkLomutoQuickselectShuffledSlice(b *testing.B) {
 	xs := shuffledSlice()
 	b.ResetTimer()
