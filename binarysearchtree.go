@@ -70,7 +70,6 @@ func (t *Tree) InOrderWalk(f fn) {
 		f(t.root.value)
 	}
 	t.root.right.inOrderWalk(f)
-
 }
 
 func (n *Node) inOrderWalk(f fn) {
