@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"git.sr.ht/~telemachus/algorithms"
+	"github.com/telemachus/algorithms"
 )
 
 func shuffledSlice() sort.IntSlice {

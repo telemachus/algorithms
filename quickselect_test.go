@@ -3,7 +3,7 @@ package algorithms_test
 import (
 	"testing"
 
-	"git.sr.ht/~telemachus/algorithms"
+	"github.com/telemachus/algorithms"
 )
 
 var selectTests = map[string]struct {

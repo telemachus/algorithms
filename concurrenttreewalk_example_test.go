@@ -3,7 +3,7 @@ package algorithms_test
 import (
 	"fmt"
 
-	"git.sr.ht/~telemachus/algorithms"
+	"github.com/telemachus/algorithms"
 	"golang.org/x/tour/tree"
 )
 

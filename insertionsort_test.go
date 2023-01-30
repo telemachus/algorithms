@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"git.sr.ht/~telemachus/algorithms"
+	"github.com/telemachus/algorithms"
 )
 
 func TestInsertionSort(t *testing.T) {
