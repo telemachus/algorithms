@@ -22,13 +22,16 @@ func QuickselectH(xs []int, low, high, nthLowest int) int {
 		return -1
 	}
 
-	switch pivotIndex := hoarePartition(xs, low, high); {
-	case nthLowest > pivotIndex:
-		return QuickselectH(xs, pivotIndex+1, high, nthLowest)
-	case nthLowest < pivotIndex:
-		return QuickselectH(xs, low, pivotIndex-1, nthLowest)
-	default:
-		return xs[nthLowest]
+	for {
+
+		switch pivotIndex := hoarePartition(xs, low, high); {
+		case nthLowest > pivotIndex:
+			return QuickselectH(xs, pivotIndex+1, high, nthLowest)
+		case nthLowest < pivotIndex:
+			return QuickselectH(xs, low, pivotIndex-1, nthLowest)
+		case nthLowest == pivotIndex:
+			return xs[nthLowest]
+		}
 	}
 }
 
