@@ -1,15 +1,15 @@
 package algorithms_test
 
 import (
-	"reflect"
 	"testing"
 
+	"github.com/google/go-cmp/cmp"
 	"github.com/telemachus/algorithms"
 )
 
 var tests = map[string]struct {
-	given    []int
-	expected []int
+	orig []int
+	want []int
 }{
 	"empty slice":                 {[]int{}, []int{}},
 	"one-item slice":              {[]int{14}, []int{14}},
@@ -28,36 +28,72 @@ var tests = map[string]struct {
 }
 
 func TestQuicksortL(t *testing.T) {
-	for msg, tc := range tests {
-		t.Run(msg, func(t *testing.T) {
-			algorithms.QuicksortL(tc.given, 0, len(tc.given)-1)
+	t.Parallel()
 
-			if !reflect.DeepEqual(tc.expected, tc.given) {
-				t.Errorf("expected %#v; actual %#v", tc.expected, tc.given)
+	for msg, tc := range tests {
+		tc := tc
+
+		t.Run(msg, func(t *testing.T) {
+			t.Parallel()
+
+			got := make([]int, len(tc.orig))
+			copy(got, tc.orig)
+			algorithms.QuicksortL(got, 0, len(got)-1)
+
+			if diff := cmp.Diff(tc.want, got); diff != "" {
+				t.Errorf(
+					"QuicksortL(%#v) failure (-want +got)\n%s",
+					tc.orig,
+					diff,
+				)
 			}
 		})
 	}
 }
 
 func TestQuicksortH(t *testing.T) {
-	for msg, tc := range tests {
-		t.Run(msg, func(t *testing.T) {
-			algorithms.QuicksortH(tc.given, 0, len(tc.given)-1)
+	t.Parallel()
 
-			if !reflect.DeepEqual(tc.expected, tc.given) {
-				t.Errorf("expected %#v; actual %#v", tc.expected, tc.given)
+	for msg, tc := range tests {
+		tc := tc
+
+		t.Run(msg, func(t *testing.T) {
+			t.Parallel()
+
+			got := make([]int, len(tc.orig))
+			copy(got, tc.orig)
+			algorithms.QuicksortH(got, 0, len(got)-1)
+
+			if diff := cmp.Diff(tc.want, got); diff != "" {
+				t.Errorf(
+					"QuicksortH(%#v) failure (-want +got)\n%s",
+					tc.orig,
+					diff,
+				)
 			}
 		})
 	}
 }
 
 func TestQuicksortYB(t *testing.T) {
-	for msg, tc := range tests {
-		t.Run(msg, func(t *testing.T) {
-			algorithms.QuicksortYB(tc.given)
+	t.Parallel()
 
-			if !reflect.DeepEqual(tc.expected, tc.given) {
-				t.Errorf("expected %#v; actual %#v", tc.expected, tc.given)
+	for msg, tc := range tests {
+		tc := tc
+
+		t.Run(msg, func(t *testing.T) {
+			t.Parallel()
+
+			got := make([]int, len(tc.orig))
+			copy(got, tc.orig)
+			algorithms.QuicksortYB(got)
+
+			if diff := cmp.Diff(tc.want, got); diff != "" {
+				t.Errorf(
+					"QuicksortYB(%#v) failure (-want +got)\n%s",
+					tc.orig,
+					diff,
+				)
 			}
 		})
 	}

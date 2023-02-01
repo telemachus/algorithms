@@ -1,16 +1,18 @@
 package algorithms_test
 
 import (
-	"reflect"
 	"testing"
 
+	"github.com/google/go-cmp/cmp"
 	"github.com/telemachus/algorithms"
 )
 
 func TestSelectionSort(t *testing.T) {
+	t.Parallel()
+
 	tests := map[string]struct {
-		given    []int
-		expected []int
+		orig []int
+		want []int
 	}{
 		"empty slice":                 {[]int{}, []int{}},
 		"one-item slice":              {[]int{14}, []int{14}},
@@ -29,13 +31,21 @@ func TestSelectionSort(t *testing.T) {
 	}
 
 	for msg, tc := range tests {
-		t.Run(msg, func(t *testing.T) {
-			original := make([]int, len(tc.given))
-			copy(original, tc.given)
-			algorithms.SelectionSort(tc.given)
+		tc := tc
 
-			if !reflect.DeepEqual(tc.expected, tc.given) {
-				t.Errorf("expected %#v, actual %#v, given %#v", tc.expected, tc.given, original)
+		t.Run(msg, func(t *testing.T) {
+			t.Parallel()
+
+			got := make([]int, len(tc.orig))
+			copy(got, tc.orig)
+			algorithms.SelectionSort(got)
+
+			if diff := cmp.Diff(tc.want, got); diff != "" {
+				t.Errorf(
+					"SelectionSort(%#v) failure (-want +got)\n%s",
+					tc.orig,
+					diff,
+				)
 			}
 		})
 	}

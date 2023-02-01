@@ -7,9 +7,9 @@ import (
 )
 
 var selectTests = map[string]struct {
-	given     []int
+	orig      []int
 	nthLowest int
-	expected  int
+	want      int
 }{
 	"empty slice":                              {[]int{}, 0, -1},
 	"nthLowest > len(xs)":                      {[]int{1}, 4, -1},
@@ -22,36 +22,85 @@ var selectTests = map[string]struct {
 }
 
 func TestLomutoQuickselect(t *testing.T) {
-	for msg, tc := range selectTests {
-		t.Run(msg, func(t *testing.T) {
-			actual := algorithms.QuickselectL(tc.given, 0, len(tc.given)-1, tc.nthLowest)
+	t.Parallel()
 
-			if tc.expected != actual {
-				t.Errorf("expected %d; actual %d", tc.expected, actual)
+	for msg, tc := range selectTests {
+		tc := tc
+
+		t.Run(msg, func(t *testing.T) {
+			t.Parallel()
+
+			dupe := make([]int, len(tc.orig))
+			copy(dupe, tc.orig)
+			got := algorithms.QuickselectL(
+				dupe,
+				0,
+				len(dupe)-1,
+				tc.nthLowest,
+			)
+
+			if got != tc.want {
+				t.Errorf(
+					"QuickselectL(%#v) == %d; want %d",
+					tc.orig,
+					got,
+					tc.want,
+				)
 			}
 		})
 	}
 }
 
 func TestHoareQuickselect(t *testing.T) {
-	for msg, tc := range selectTests {
-		t.Run(msg, func(t *testing.T) {
-			actual := algorithms.QuickselectH(tc.given, 0, len(tc.given)-1, tc.nthLowest)
+	t.Parallel()
 
-			if tc.expected != actual {
-				t.Errorf("expected %d; actual %d", tc.expected, actual)
+	for msg, tc := range selectTests {
+		tc := tc
+
+		t.Run(msg, func(t *testing.T) {
+			t.Parallel()
+
+			dupe := make([]int, len(tc.orig))
+			copy(dupe, tc.orig)
+			got := algorithms.QuickselectH(
+				dupe,
+				0,
+				len(dupe)-1,
+				tc.nthLowest,
+			)
+
+			if got != tc.want {
+				t.Errorf(
+					"QuickselectH(%#v) == %d; want %d",
+					tc.orig,
+					got,
+					tc.want,
+				)
 			}
 		})
 	}
 }
 
 func TestYourBasicQuickselect(t *testing.T) {
-	for msg, tc := range selectTests {
-		t.Run(msg, func(t *testing.T) {
-			actual := algorithms.QuickselectYB(tc.given, tc.nthLowest)
+	t.Parallel()
 
-			if tc.expected != actual {
-				t.Errorf("expected %d; actual %d", tc.expected, actual)
+	for msg, tc := range selectTests {
+		tc := tc
+
+		t.Run(msg, func(t *testing.T) {
+			t.Parallel()
+
+			dupe := make([]int, len(tc.orig))
+			copy(dupe, tc.orig)
+			got := algorithms.QuickselectYB(dupe, tc.nthLowest)
+
+			if got != tc.want {
+				t.Errorf(
+					"QuickselectYB(%#v) == %d; want %d",
+					tc.orig,
+					got,
+					tc.want,
+				)
 			}
 		})
 	}

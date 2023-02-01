@@ -8,18 +8,22 @@ import (
 )
 
 func TestNewBST(t *testing.T) {
+	t.Parallel()
+
 	tree := algorithms.NewBST()
 
 	if tree == nil {
 		t.Errorf("tree is nil, but it shouldn’t be")
 	}
-	if 0 != tree.Size() {
-		t.Errorf("expected tree.Size() to be 0; actual: %d", tree.Size())
+
+	if tree.Size() != 0 {
+		t.Errorf("tree.Size() == %d; want 0", tree.Size())
 	}
-	expected := "*algorithms.Tree"
-	actual := fmt.Sprintf("%T", tree)
-	if expected != actual {
-		t.Errorf("expected %s; actual %s", expected, actual)
+
+	want := "*algorithms.Tree"
+	got := fmt.Sprintf("%T", tree)
+	if got != want {
+		t.Errorf("Sprintf(\"%%T\", tree) == %s; want %s", got, want)
 	}
 }
 
@@ -30,8 +34,8 @@ func TestTreeInsert(t *testing.T) {
 	tree.Insert(-15)
 	tree.Insert(10)
 
-	if 4 != tree.Size() {
-		t.Errorf("inserted three items; actual tree.Size() is %d", tree.Size())
+	if tree.Size() != 4 {
+		t.Errorf("tree.Size() == %d after inserting four items", tree.Size())
 	}
 }
 
@@ -42,19 +46,19 @@ func TestTreeSearch(t *testing.T) {
 	tree.Insert(-15)
 	tree.Insert(10)
 
-	actual := tree.Search(-15)
-	if -15 != actual.Value() {
-		t.Errorf("expected %d; actual %d", -15, actual.Value())
+	got := tree.Search(-15)
+	if got.Value() != -15 {
+		t.Errorf("tree.Search(-15) == %d; want -15", got.Value())
 	}
 
-	actual = tree.Search(7)
-	if nil != actual {
-		t.Errorf("expected %#v; actual %#v", nil, actual)
+	got = tree.Search(7)
+	if got != nil {
+		t.Errorf("tree.Search(7) == %v; want nil", got)
 	}
 
-	actual = tree.Search(10)
-	if 2 != actual.Count() {
-		t.Errorf("expected result to have 10 twice; actual %d", actual.Count())
+	got = tree.Search(10)
+	if got.Count() != 2 {
+		t.Errorf("got = tree.search(10); got.Count == %d; want 2", got.Count())
 	}
 }
 
@@ -65,9 +69,9 @@ func TestTreeMin(t *testing.T) {
 	tree.Insert(-15)
 	tree.Insert(10)
 
-	actual := tree.Min()
-	if -15 != actual.Value() {
-		t.Errorf("expected a minimum of %d; actual %d", -15, actual.Value())
+	got := tree.Min()
+	if got.Value() != -15 {
+		t.Errorf("tree.Min() == %d; want -15", got.Value())
 	}
 }
 
@@ -79,9 +83,9 @@ func TestTreeMax(t *testing.T) {
 	tree.Insert(10)
 	tree.Insert(1010)
 
-	actual := tree.Max()
-	if 1010 != actual.Value() {
-		t.Errorf("expected a maximum of %d; actual %d", 1010, actual.Value())
+	got := tree.Max()
+	if got.Value() != 1010 {
+		t.Errorf("tree.Max() == %d; want 1010", got.Value())
 	}
 }
 
@@ -100,15 +104,15 @@ func TestTreeSuccessor(t *testing.T) {
 	tree.Insert(20)
 
 	node := tree.Search(7)
-	actual := tree.Successor(node)
-	if 9 != actual.Value() {
-		t.Errorf("expected 9 as successor; actual %d", actual.Value())
+	got := tree.Successor(node)
+	if got.Value() != 9 {
+		t.Errorf("tree.Successor(%+v) == %d; want 9", got, got.Value())
 	}
 
 	node = tree.Search(20)
-	actual = tree.Successor(node)
-	if nil != actual {
-		t.Errorf("expected nil as successor; actual %#v", actual)
+	got = tree.Successor(node)
+	if got != nil {
+		t.Errorf("tree.Successor(%+v) == %v; want nil", node, got)
 	}
 }
 
@@ -127,26 +131,26 @@ func TestTreePredecessor(t *testing.T) {
 	tree.Insert(20)
 
 	node := tree.Search(15)
-	actual := tree.Predecessor(node)
-	if 13 != actual.Value() {
-		t.Errorf("expected 15 as predecessor; actual %d", actual.Value())
+	got := tree.Predecessor(node)
+	if got.Value() != 13 {
+		t.Errorf("tree.Predecessor(%+v) == %d; want 13", got, got.Value())
 	}
 
 	node = tree.Search(4)
-	actual = tree.Predecessor(node)
-	if 3 != actual.Value() {
-		t.Errorf("expected 3 as predecessor; actual %d", actual.Value())
+	got = tree.Predecessor(node)
+	if got.Value() != 3 {
+		t.Errorf("tree.Predecessor(%+v) == %d; want 3", node, got.Value())
 	}
 
 	node = tree.Search(9)
-	actual = tree.Predecessor(node)
-	if 7 != actual.Value() {
-		t.Errorf("expected 7 as predecessor; actual %d", actual.Value())
+	got = tree.Predecessor(node)
+	if got.Value() != 7 {
+		t.Errorf("tree.Predecessor(%v) == %d; want 7", node, got.Value())
 	}
 
 	node = tree.Search(2)
-	actual = tree.Predecessor(node)
-	if nil != actual {
-		t.Errorf("expected nil as predecessor; actual %#v", actual)
+	got = tree.Predecessor(node)
+	if got != nil {
+		t.Errorf("tree.Predecessor(%+v) == %v; want nil", node, got)
 	}
 }

@@ -7,10 +7,12 @@ import (
 )
 
 func TestBinarySearch(t *testing.T) {
+	t.Parallel()
+
 	tests := map[string]struct {
-		slice    []int
-		wanted   int
-		expected int
+		orig   []int
+		target int
+		want   int
 	}{
 		"empty slice":                 {[]int{}, 3, -1},
 		"wanted not in slice":         {[]int{1, 2, 3}, 4, -1},
@@ -21,10 +23,20 @@ func TestBinarySearch(t *testing.T) {
 	}
 
 	for msg, tc := range tests {
+		tc := tc
+
 		t.Run(msg, func(t *testing.T) {
-			actual := algorithms.BinarySearch(tc.slice, tc.wanted)
-			if tc.expected != actual {
-				t.Errorf("expected %d; actual %d; given %#v", tc.expected, actual, tc.slice)
+			t.Parallel()
+
+			got := algorithms.BinarySearch(tc.orig, tc.target)
+			if got != tc.want {
+				t.Errorf(
+					"BinarySearch(%v, %v): got %d; want %d",
+					tc.orig,
+					tc.target,
+					got,
+					tc.want,
+				)
 			}
 		})
 	}
