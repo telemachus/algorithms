@@ -6,7 +6,14 @@ func QuickselectL(xs []int, low, high, nthLowest int) int {
 		return -1
 	}
 
-	QuicksortL(xs, low, high)
+	switch pivotIndex := lomutoPartition(xs, low, high); {
+	case nthLowest > pivotIndex:
+		return QuickselectL(xs, pivotIndex+1, high, nthLowest)
+	case nthLowest < pivotIndex:
+		return QuickselectL(xs, low, pivotIndex-1, nthLowest)
+	default:
+		return xs[nthLowest]
+	}
 
 	return xs[nthLowest]
 }
@@ -33,7 +40,15 @@ func QuickselectYB(xs []int, nthLowest int) int {
 		return -1
 	}
 
-	QuicksortYB(xs)
+	pivotValue := yourBasicPivot(xs)
+	switch low, high := yourBasicPartition(xs, pivotValue); {
+	case nthLowest <= low:
+		QuicksortYB(xs[:low])
 
-	return xs[nthLowest]
+		return xs[nthLowest]
+	default:
+		QuicksortYB(xs[high:])
+
+		return xs[nthLowest]
+	}
 }
