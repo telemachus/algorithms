@@ -14,8 +14,6 @@ func QuickselectL(xs []int, low, high, nthLowest int) int {
 	default:
 		return xs[nthLowest]
 	}
-
-	return xs[nthLowest]
 }
 
 // QuickselectH implements quickselect using Hoare’s partition.
