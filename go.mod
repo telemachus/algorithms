@@ -7,4 +7,4 @@ require (
 	golang.org/x/tour v0.1.0
 )
 
-retract [v0.0.0, v0.1.0]
+retract [v0.0.0-0, v0.2.0]
